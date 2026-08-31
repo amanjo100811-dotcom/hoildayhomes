@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Holiday Home & Homestay – Budget AC Rooms Tapovan Rishikesh</title>
+    <meta name="description" content="The Holiday Home & Homestay offers clean AC rooms, free Wi-Fi, pool, parking. Near Laxman Jhula. LGBTQ+ friendly." />
+    <meta property="og:title" content="The Holiday Home & Homestay – Comfortable Stay in Rishikesh" />
+    <meta property="og:description" content="Clean rooms, free Wi-Fi, pool, parking. Near Tapovan. 4.1★ rated." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=80" />
+    <link rel="canonical" href="https://www.theholidayhomeandhomestay.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --gold: #C9A96E;
+            --gold-dark: #A8894B;
+            --teal: #1A3B44;
+            --teal-dark: #0B171C;
+            --cream: #F9F5F0;
+            --white: #FFFFFF;
+            --shadow: 0 20px 50px rgba(0,0,0,0.08);
+            --radius: 16px;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: #2d2d2d;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 4px;
+            background: var(--gold); z-index: 10000;
+            width: 0%; transition: width 0.2s;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        /* ========== NEW OPENING: GOLDEN ORB & RING EXPANSION ========== */
+        #intro-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--teal-dark);
+            z-index: 9999;
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #intro-overlay.hide {
+            opacity: 0; visibility: hidden;
+        }
+
+        .orb {
+            position: absolute; top: 50%; left: 50%;
+            width: 80px; height: 80px;
+            background: radial-gradient(circle, #ffd700, #c9a96e);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 60px 20px rgba(255,215,0,0.7);
+            animation: orbPulse 1.5s ease-in-out forwards, orbToRing 1s 1.5s forwards;
+            z-index: 1;
+        }
+        @keyframes orbPulse {
+            0% { width: 20px; height: 20px; opacity: 0; }
+            50% { width: 100px; height: 100px; opacity: 1; }
+            100% { width: 80px; height: 80px; opacity: 1; }
+        }
+        @keyframes orbToRing {
+            0% { width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, #ffd700, #c9a96e); }
+            100% { width: 300px; height: 300px; border-radius: 50%; background: transparent; border: 4px solid var(--gold); box-shadow: 0 0 40px rgba(201,169,110,0.8), inset 0 0 30px rgba(201,169,110,0.3); }
+        }
+
+        .ring-name {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem; font-weight: 700; color: var(--gold);
+            text-align: center;
+            z-index: 2;
+            opacity: 0;
+            animation: nameReveal 1s 2.5s forwards;
+            text-shadow: 0 0 20px rgba(201,169,110,0.9), 0 0 40px rgba(201,169,110,0.6);
+        }
+        @keyframes nameReveal {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); letter-spacing: 10px; }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); letter-spacing: 2px; }
+        }
+
+        .ring-expand {
+            position: absolute; top: 50%; left: 50%;
+            width: 300px; height: 300px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            animation: ringExpandOut 1.2s 3.5s forwards;
+            opacity: 0;
+        }
+        @keyframes ringExpandOut {
+            0% { opacity: 1; width: 300px; height: 300px; }
+            100% { opacity: 0; width: 200vmax; height: 200vmax; }
+        }
+
+        .intro-dust {
+            position: absolute; width: 100%; height: 100%;
+            z-index: 3; pointer-events: none;
+        }
+        .intro-dust span {
+            position: absolute;
+            width: 5px; height: 5px;
+            background: #f9d56e;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #f9d56e, 0 0 20px #c9a96e;
+            animation: floatDust linear infinite;
+        }
+        .intro-dust span:nth-child(1) { left: 10%; top: 20%; animation-duration: 5s; animation-delay: 0s; }
+        .intro-dust span:nth-child(2) { left: 85%; top: 30%; animation-duration: 7s; animation-delay: -2s; }
+        .intro-dust span:nth-child(3) { left: 45%; top: 10%; animation-duration: 6s; animation-delay: -4s; }
+        .intro-dust span:nth-child(4) { left: 70%; top: 70%; animation-duration: 8s; animation-delay: -1s; }
+        .intro-dust span:nth-child(5) { left: 25%; top: 80%; animation-duration: 9s; animation-delay: -3s; }
+        .intro-dust span:nth-child(6) { left: 55%; top: 60%; animation-duration: 4s; animation-delay: -5s; }
+        .intro-dust span:nth-child(7) { left: 90%; top: 50%; animation-duration: 7s; animation-delay: -6s; }
+        @keyframes floatDust {
+            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-150px) translateX(40px) scale(0); opacity: 0; }
+        }
+        /* ========== END NEW OPENING ========== */
+
+        /* Rest of styles unchanged */
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; }
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+        .btn-gold {
+            background: var(--gold); color: var(--white);
+            padding: 16px 44px; border-radius: 60px; font-weight: 600;
+            font-size: 1rem; cursor: pointer; transition: 0.4s;
+            text-decoration: none; display: inline-block; letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(201,169,110,0.6);
+            animation: pulseGlow 2.5s infinite;
+        }
+        .btn-gold:hover, .btn-gold:focus {
+            background: var(--gold-dark); transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(201,169,110,0.9); animation: none;
+        }
+        .btn-outline {
+            background: transparent; color: var(--white);
+            padding: 14px 38px; border: 2px solid var(--white);
+            border-radius: 60px; font-weight: 600; text-decoration: none;
+            transition: 0.3s; display: inline-block;
+        }
+        .btn-outline:hover { background: var(--white); color: var(--teal-dark); }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(201,169,110,0.6); }
+            50% { box-shadow: 0 0 30px rgba(201,169,110,0.9); }
+        }
+
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 22px 0; transition: 0.4s; background: transparent;
+        }
+        .navbar.scrolled {
+            background: rgba(11, 23, 28, 0.96); backdrop-filter: blur(14px);
+            padding: 12px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+        }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta { background: var(--gold); padding: 8px 28px; border-radius: 60px; color: var(--white) !important; font-weight: 600; }
+        .nav-cta:hover { background: var(--white) !important; color: var(--teal-dark) !important; }
+        .nav-cta::after { display: none; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 1001; }
+        .hamburger span { width: 28px; height: 3px; background: var(--white); border-radius: 3px; }
+
+        .hero {
+            min-height: 100vh; position: relative;
+            background: linear-gradient(135deg, rgba(11, 23, 28, 0.85) 0%, rgba(26, 59, 68, 0.5) 100%),
+                        url('https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1600&q=80');
+            background-size: cover; background-position: center 30%;
+            background-attachment: fixed;
+            display: flex; align-items: center; padding-top: 100px;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+            background: linear-gradient(to top, var(--cream), transparent); z-index: 2;
+        }
+        .wave-container {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 180px; z-index: 3;
+        }
+        .wave {
+            position: absolute; bottom: 0; width: 200%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23C9A96E" fill-opacity="0.3" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,176C960,171,1056,213,1152,224C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+            background-size: 50% 100%; animation: waveMove 12s linear infinite;
+        }
+        .wave:nth-child(2) { bottom: 10px; opacity: 0.5; animation: waveMove 18s linear infinite reverse; }
+        .wave:nth-child(3) { bottom: 20px; opacity: 0.2; animation: waveMove 24s linear infinite; }
+        @keyframes waveMove { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        #particle-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 3; max-width: 860px; }
+        .hero-content .sub { font-size: 0.9rem; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+        .hero-content h1 {
+            font-size: 5.8rem; color: var(--white); line-height: 1.05; margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(201,169,110,0.6), 0 0 40px rgba(201,169,110,0.4);
+        }
+        .hero-content h1 i { font-style: italic; color: var(--gold); font-weight: 400; }
+        .hero-content p { font-size: 1.4rem; color: rgba(255,255,255,0.9); max-width: 600px; margin-bottom: 40px; font-weight: 300; }
+        .hero-badges { display: flex; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .hero-badges div { color: var(--white); font-weight: 500; }
+        .hero-badges div i { color: var(--gold); margin-right: 12px; }
+        .hero-badges div strong { font-size: 1.6rem; display: block; font-weight: 700; }
+
+        .scroll-indicator {
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            z-index: 3; display: flex; flex-direction: column; align-items: center;
+            color: rgba(255,255,255,0.7); font-size: 0.8rem; letter-spacing: 2px;
+        }
+        .scroll-indicator .mouse {
+            width: 25px; height: 40px; border: 2px solid rgba(255,255,255,0.7);
+            border-radius: 15px; position: relative; margin-bottom: 10px;
+            animation: bounceMouse 2s infinite;
+        }
+        @keyframes bounceMouse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        .scroll-indicator .mouse::before {
+            content: ''; position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+            width: 4px; height: 8px; background: var(--gold); border-radius: 2px;
+            animation: scrollWheel 1.5s infinite;
+        }
+        @keyframes scrollWheel {
+            0% { opacity: 1; top: 8px; }
+            100% { opacity: 0; top: 20px; }
+        }
+
+        .butterfly { position: fixed; z-index: 998; pointer-events: none; animation: fly 18s linear infinite; }
+        .butterfly svg { width: 36px; height: 36px; }
+        .butterfly .wing { animation: flap 0.15s ease-in-out infinite alternate; transform-origin: center; }
+        @keyframes flap { 0% { transform: scaleY(1) rotateY(0); } 100% { transform: scaleY(0.7) rotateY(20deg); } }
+        @keyframes fly { 0% { left: -10%; top: 80%; } 25% { left: 25%; top: 20%; } 50% { left: 55%; top: 60%; } 75% { left: 80%; top: 30%; } 100% { left: 110%; top: 70%; } }
+        .butterfly:nth-child(2) { animation: fly2 20s linear infinite; animation-delay: -5s; }
+        @keyframes fly2 { 0% { left: 110%; top: 30%; } 25% { left: 70%; top: 70%; } 50% { left: 30%; top: 10%; } 75% { left: 10%; top: 50%; } 100% { left: -10%; top: 20%; } }
+        .butterfly:nth-child(3) { animation: fly3 22s linear infinite; animation-delay: -10s; }
+        @keyframes fly3 { 0% { left: 40%; top: -10%; } 25% { left: 70%; top: 40%; } 50% { left: 90%; top: 80%; } 75% { left: 50%; top: 60%; } 100% { left: 20%; top: 10%; } }
+        .petal { position: fixed; z-index: 997; pointer-events: none; font-size: 18px; color: var(--gold); opacity: 0.6; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+        .petal:nth-child(1) { left: 5%; animation-duration: 14s; }
+        .petal:nth-child(2) { left: 20%; animation-duration: 16s; animation-delay: -4s; }
+        .petal:nth-child(3) { left: 40%; animation-duration: 12s; animation-delay: -8s; }
+        .petal:nth-child(4) { left: 65%; animation-duration: 18s; animation-delay: -2s; }
+        .petal:nth-child(5) { left: 80%; animation-duration: 15s; animation-delay: -6s; }
+        .petal:nth-child(6) { left: 90%; animation-duration: 17s; animation-delay: -10s; }
+
+        .section { padding: 120px 0; }
+        .section-title { margin-bottom: 70px; }
+        .section-title .label { color: var(--gold); letter-spacing: 4px; text-transform: uppercase; font-weight: 600; font-size: 0.8rem; }
+        .section-title h2 { font-size: 4rem; color: var(--teal); margin: 10px 0 16px; }
+        .section-title .gold-line { width: 100px; height: 4px; background: var(--gold); margin: 16px 0 24px; animation: pulseLine 2s infinite; }
+        @keyframes pulseLine { 0%,100% { width:100px; opacity:1; } 50% { width:140px; opacity:0.7; } }
+        .section-title p { color: #555; font-size: 1.15rem; max-width: 600px; }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-grid img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); transition: 0.6s; }
+        .about-grid img:hover { transform: scale(1.02); }
+        .about-text h3 { font-size: 2.8rem; color: var(--teal-dark); margin-bottom: 24px; }
+        .about-text p { color: #444; line-height: 2; font-size: 1.05rem; margin-bottom: 20px; }
+        .about-stats { display: flex; gap: 50px; margin-top: 40px; }
+        .about-stats h4 { font-size: 3rem; color: var(--gold); font-weight: 700; }
+
+        .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; perspective: 1000px; }
+        .room-card {
+            background: var(--white); border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow); transition: 0.3s; border: 1px solid rgba(201,169,110,0.1);
+            transform-style: preserve-3d;
+        }
+        .room-card:hover { box-shadow: 0 40px 80px rgba(0,0,0,0.2); border-color: var(--gold); }
+        .room-card img { width: 100%; height: 320px; object-fit: cover; transition: 0.5s; }
+        .room-card:hover img { transform: scale(1.05); }
+        .room-card .body { padding: 32px; }
+        .room-card .body .room-tag { background: var(--gold); color: white; padding: 4px 18px; border-radius: 40px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 12px; }
+        .room-card .body .room-tag.popular { background: var(--teal); }
+        .room-card .body h3 { font-size: 2rem; color: var(--teal); }
+        .room-card .body .price { font-size: 2rem; color: var(--gold); font-weight: 700; margin: 8px 0 16px; }
+        .room-card .body .specs { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.9rem; color: #555; margin-bottom: 16px; border-bottom: 1px solid #eee; padding-bottom: 16px; }
+        .room-card .body .specs i { color: var(--gold); margin-right: 6px; }
+        .room-card .body ul { list-style: none; margin: 16px 0; }
+        .room-card .body ul li { padding: 6px 0; font-size: 0.95rem; color: #444; border-bottom: 1px dashed #f5f5f5; }
+        .room-card .body ul li i { color: var(--gold); margin-right: 14px; }
+        .room-card .body .btn-gold { padding: 14px 30px; width: 100%; text-align: center; font-size: 0.95rem; display: block; animation: none; }
+
+        .exp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .exp-item { background: var(--white); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); border-left: 8px solid var(--gold); display: flex; gap: 24px; align-items: flex-start; transition: 0.3s; }
+        .exp-item:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.12); }
+        .exp-item i { font-size: 3rem; color: var(--gold); min-width: 60px; }
+        .exp-item h4 { font-size: 1.8rem; color: var(--teal); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .gallery-grid img { width: 100%; height: 280px; object-fit: cover; border-radius: var(--radius); transition: 0.5s; }
+        .gallery-grid img:hover { transform: scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .gallery-grid .tall { grid-row: span 2; height: 580px; }
+
+        .amen-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+        .amen-item { background: var(--white); padding: 40px 20px; text-align: center; border-radius: var(--radius); box-shadow: var(--shadow); transition: 0.3s; }
+        .amen-item:hover { background: var(--teal); color: var(--white); transform: scale(1.05); }
+        .amen-item:hover i { color: var(--gold); }
+        .amen-item i { font-size: 3rem; color: var(--gold); margin-bottom: 16px; }
+
+        .faq-grid { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--white); margin-bottom: 16px; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+        .faq-question { padding: 24px 30px; font-weight: 700; font-size: 1.2rem; color: var(--teal); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-question i { color: var(--gold); transition: 0.3s; }
+        .faq-answer { padding: 0 30px 24px; color: #555; line-height: 1.8; display: none; }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .test-card { background: var(--white); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 6px solid var(--gold); transition: 0.3s; }
+        .test-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
+
+        .cta-banner {
+            background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+            padding: 100px 0; text-align: center; color: var(--white);
+            background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80');
+            background-blend-mode: overlay; background-size: cover;
+        }
+
+        .footer { background: #0A1519; color: rgba(255,255,255,0.7); padding: 70px 0 30px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+        .footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+        .whatsapp-float {
+            position: fixed; bottom: 28px; right: 28px;
+            background: #25D366; color: white; width: 68px; height: 68px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2.6rem; box-shadow: 0 10px 40px rgba(37,211,102,0.5);
+            z-index: 999; animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        @media (max-width: 1024px) {
+            .about-grid, .exp-grid { grid-template-columns: 1fr; }
+            .rooms-grid { grid-template-columns: 1fr 1fr; }
+            .amen-grid { grid-template-columns: 1fr 1fr; }
+            .test-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
+                background: rgba(11,23,28,0.97); flex-direction: column; justify-content: center;
+                align-items: center; transition: 0.5s;
+            }
+            .nav-links.active { right: 0; }
+            .hero-content h1 { font-size: 3.2rem; }
+            .rooms-grid { grid-template-columns: 1fr; }
+            .test-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .orb { width: 60px; height: 60px; }
+            .ring-name { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div id="progress-bar"></div>
+
+    <!-- NEW OPENING OVERLAY -->
+    <div id="intro-overlay">
+        <div class="orb"></div>
+        <div class="ring-name">The Holiday Home<br>& Homestay</div>
+        <div class="ring-expand"></div>
+        <div class="intro-dust">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- Butterflies & Petals -->
+    <div class="butterfly" style="top:20%; left:-10%;"><svg viewBox="0 0 100 100"><g class="wing"><path d="M50 50 Q30 20 10 30 Q20 50 50 50" fill="#C9A96E" opacity="0.8"/><path d="M50 50 Q70 20 90 30 Q80 50 50 50" fill="#C9A96E" opacity="0.8"/></g></svg></div>
+    <div class="butterfly" style="top:50%; left:110%;"><svg viewBox="0 0 100 100"><g class="wing"><path d="M50 50 Q30 20 10 30 Q20 50 50 50" fill="#A8894B" opacity="0.8"/><path d="M50 50 Q70 20 90 30 Q80 50 50 50" fill="#A8894B" opacity="0.8"/></g></svg></div>
+    <div class="butterfly" style="top:10%; left:40%;"><svg viewBox="0 0 100 100"><g class="wing"><path d="M50 50 Q25 15 5 25 Q15 50 50 50" fill="#C9A96E" opacity="0.7"/><path d="M50 50 Q75 15 95 25 Q85 50 50 50" fill="#C9A96E" opacity="0.7"/></g></svg></div>
+    <div class="petal" style="top:-10%;">🌸</div><div class="petal" style="top:-20%;">🌺</div><div class="petal" style="top:-30%;">💮</div><div class="petal" style="top:-40%;">🏵️</div><div class="petal" style="top:-50%;">🌼</div><div class="petal" style="top:-60%;">🌸</div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">The Holiday <span>Home & Homestay</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">About</a>
+                <a href="#rooms">Rooms</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact" class="nav-cta"><i class="fas fa-phone-alt"></i> Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <canvas id="particle-canvas"></canvas>
+        <div class="wave-container">
+            <div class="wave"></div><div class="wave"></div><div class="wave"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="sub" data-aos="fade-down"><i class="fas fa-map-pin"></i> Kandari Medical Store, Anna's Mess Restaurant Down to, Rishikesh</div>
+            <h1 data-aos="fade-right">Budget <i>Stays</i> <br/>with a Personal Touch.</h1>
+            <p data-aos="fade-up" data-aos-delay="200">The Holiday Home & Homestay offers clean AC rooms, free Wi-Fi, pool, and free parking — a perfect budget stay in Tapovan, Rishikesh.</p>
+            <div style="display: flex; gap: 18px; flex-wrap: wrap;" data-aos="fade-up" data-aos-delay="400">
+                <a href="#rooms" class="btn-gold"><i class="fas fa-calendar-check"></i> Book Now</a>
+                <a href="#about" class="btn-outline"><i class="fas fa-chevron-down"></i> Learn More</a>
+            </div>
+            <div class="hero-badges" data-aos="fade-up" data-aos-delay="600">
+                <div><strong>4.1 ★</strong> 122+ Reviews</div>
+                <div><i class="fas fa-wifi"></i> Free Wi-Fi</div>
+                <div><i class="fas fa-swimmer"></i> Pool & AC</div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <span>SCROLL</span>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" alt="The Holiday Home & Homestay exterior" loading="lazy"/>
+                    <div style="margin-top:24px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80" alt="AC Room" style="border-radius:12px; width:100%; height:150px; object-fit:cover;" loading="lazy"/>
+                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" alt="Pool Area" style="border-radius:12px; width:100%; height:150px; object-fit:cover;" loading="lazy"/>
+                    </div>
+                </div>
+                <div class="about-text" data-aos="fade-left">
+                    <div class="section-title"><div class="label">Our Story</div><h2>The Holiday <span style="color:var(--gold);">Promise</span></h2><div class="gold-line"></div></div>
+                    <h3>Comfortable Homestay in Tapovan.</h3>
+                    <p>Located in the vibrant Tapovan neighbourhood, The Holiday Home & Homestay offers a cosy, budget-friendly retreat with modern amenities. We are LGBTQ+ friendly and welcome all travellers with open arms.</p>
+                    <p>Guests enjoy our <strong>free Wi-Fi</strong>, <strong>swimming pool</strong>, <strong>free parking</strong>, and <strong>air-conditioned rooms</strong>. Our friendly staff ensures a memorable stay.</p>
+                    <div class="about-stats">
+                        <div><h4 class="counter" data-target="4">0</h4><span>Stars Rating</span></div>
+                        <div><h4 class="counter" data-target="122">0</h4><span>Reviews</span></div>
+                        <div><h4>4.1 ★</h4><span>Google Rating</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms -->
+    <section class="section" id="rooms" style="background: var(--white);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up"><div class="label">Accommodation</div><h2>Our <span style="color:var(--gold);">Rooms</span></h2><div class="gold-line"></div><p>Clean, air-conditioned, and designed for a relaxing stay.</p></div>
+            <div class="rooms-grid">
+                <div class="room-card" data-aos="zoom-in" id="card1">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80" alt="Standard Room" loading="lazy"/>
+                    <div class="body">
+                        <span class="room-tag popular">Best Value</span>
+                        <h3>Standard AC Room</h3>
+                        <div class="price">₹1,500 <small>/ night</small></div>
+                        <div class="specs"><span><i class="fas fa-user"></i> 2 Guests</span><span><i class="fas fa-bed"></i> Double Bed</span><span><i class="fas fa-snowflake"></i> AC</span></div>
+                        <p style="font-size:0.9rem; color:#666;">Cozy room with all basic amenities.</p>
+                        <ul><li><i class="fas fa-check"></i> Free Wi-Fi</li><li><i class="fas fa-check"></i> Attached Bathroom</li><li><i class="fas fa-check"></i> Work Desk</li></ul>
+                        <a href="#contact" class="btn-gold">Book Now</a>
+                    </div>
+                </div>
+                <div class="room-card" data-aos="zoom-in" data-aos-delay="200" id="card2">
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" alt="Deluxe Room" loading="lazy"/>
+                    <div class="body">
+                        <span class="room-tag">Spacious</span>
+                        <h3>Deluxe AC Room</h3>
+                        <div class="price">₹2,200 <small>/ night</small></div>
+                        <div class="specs"><span><i class="fas fa-user"></i> 3 Guests</span><span><i class="fas fa-bed"></i> Queen Bed</span><span><i class="fas fa-snowflake"></i> AC</span></div>
+                        <p style="font-size:0.9rem; color:#666;">Extra space with seating area and pool view.</p>
+                        <ul><li><i class="fas fa-check"></i> Pool View</li><li><i class="fas fa-check"></i> Seating Area</li><li><i class="fas fa-check"></i> Paid Breakfast Available</li></ul>
+                        <a href="#contact" class="btn-gold">Book Now</a>
+                    </div>
+                </div>
+                <div class="room-card" data-aos="zoom-in" data-aos-delay="400" id="card3">
+                    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" alt="Family Suite" loading="lazy"/>
+                    <div class="body">
+                        <span class="room-tag">Family</span>
+                        <h3>Family Suite</h3>
+                        <div class="price">₹3,500 <small>/ night</small></div>
+                        <div class="specs"><span><i class="fas fa-user"></i> 4 Guests</span><span><i class="fas fa-bed"></i> 2 Double Beds</span><span><i class="fas fa-snowflake"></i> AC</span></div>
+                        <p style="font-size:0.9rem; color:#666;">Spacious suite ideal for families and groups.</p>
+                        <ul><li><i class="fas fa-check"></i> Two Rooms</li><li><i class="fas fa-check"></i> Private Balcony</li><li><i class="fas fa-check"></i> Extra Beds</li></ul>
+                        <a href="#contact" class="btn-gold">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section" id="gallery" style="background: var(--white);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up"><div class="label">Gallery</div><h2>Our <span style="color:var(--gold);">Space</span></h2><div class="gold-line"></div></div>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80" alt="Room" class="tall" loading="lazy"/>
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" alt="Building" loading="lazy"/>
+                <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" alt="Lobby" loading="lazy"/>
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Pool" loading="lazy"/>
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80" alt="Exterior" loading="lazy"/>
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Food" loading="lazy"/>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up"><div class="label">Amenities</div><h2>Your <span style="color:var(--gold);">Comfort</span></h2><div class="gold-line"></div></div>
+            <div class="amen-grid">
+                <div class="amen-item" data-aos="zoom-in"><i class="fas fa-wifi"></i><h4>Free Wi-Fi</h4><p>High-speed internet</p></div>
+                <div class="amen-item" data-aos="zoom-in"><i class="fas fa-snowflake"></i><h4>Air-Conditioned</h4><p>All rooms AC</p></div>
+                <div class="amen-item" data-aos="zoom-in"><i class="fas fa-swimmer"></i><h4>Swimming Pool</h4><p>Refreshing pool</p></div>
+                <div class="amen-item" data-aos="zoom-in"><i class="fas fa-parking"></i><h4>Free Parking</h4><p>On-site parking</p></div>
+                <div class="amen-item" data-aos="zoom-in"><i class="fas fa-utensils"></i><h4>Paid Breakfast</h4><p>Delicious meals</p></div>
+                <div class="amen-item" data-aos="zoom-in"><i class="fas fa-wheelchair"></i><h4>Accessible</h4><p>Wheelchair friendly</p></div>
+                <div class="amen-item" data-aos="zoom-in"><i class="fas fa-concierge-bell"></i><h4>Room Service</h4><p>Quick & helpful</p></div>
+                <div class="amen-item" data-aos="zoom-in"><i class="fas fa-rainbow"></i><h4>LGBTQ+ Friendly</h4><p>Everyone welcome</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" style="background: var(--white);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up"><div class="label">Testimonials</div><h2>Guest <span style="color:var(--gold);">Feedback</span></h2><div class="gold-line"></div></div>
+            <div class="test-grid">
+                <div class="test-card" data-aos="fade-up"><i class="fas fa-quote-left"></i><p style="font-style:italic;">"Nice budget stay near Laxman Jhula. Rooms were clean and the pool was great. Staff very friendly."</p><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><strong>Amit V.</strong> – Delhi</div>
+                <div class="test-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-quote-left"></i><p style="font-style:italic;">"Good value for money. Free Wi-Fi worked perfectly, and the AC was very effective. Will come again."</p><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><strong>Sunita R.</strong> – Haridwar</div>
+                <div class="test-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-quote-left"></i><p style="font-style:italic;">"Perfect for budget travellers. Near all cafes and the bridge. The owner was very welcoming."</p><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><strong>Vikram S.</strong> – Rishikesh</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-title" style="text-align:center;" data-aos="fade-up"><div class="label">FAQ</div><h2>Quick <span style="color:var(--gold);">Answers</span></h2><div class="gold-line" style="margin:16px auto;"></div></div>
+            <div class="faq-grid">
+                <div class="faq-item" data-aos="fade-up"><div class="faq-question">Check-in / Check-out? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Check-in: 2:00 PM | Check-out: 11:00 AM. Flexible subject to availability.</div></div>
+                <div class="faq-item" data-aos="fade-up"><div class="faq-question">Is breakfast included? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Breakfast is available at an additional cost (paid breakfast).</div></div>
+                <div class="faq-item" data-aos="fade-up"><div class="faq-question">Is parking free? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, free parking is available on-site.</div></div>
+                <div class="faq-item" data-aos="fade-up"><div class="faq-question">Do you have a pool? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, we have a swimming pool for guests.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Location -->
+    <section class="section" id="contact" style="background: var(--white);">
+        <div class="container">
+            <div class="section-title" style="text-align:center;" data-aos="fade-up"><div class="label">Contact Us</div><h2>Our <span style="color:var(--gold);">Location</span></h2><div class="gold-line" style="margin:16px auto;"></div></div>
+            <div style="display:flex; gap:40px; flex-wrap:wrap; background:white; padding:40px; border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,0.08);" data-aos="fade-up">
+                <div style="flex:2; min-width:300px; height:350px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.892578849127!2d78.301234!3d30.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39093e67c8b34d4f%3A0x4d5c6d7c5f5e1234!2sTapovan%2C%20Rishikesh!5e0!3m2!1sen!2sin!4v1610000000000" allowfullscreen="" loading="lazy" style="width:100%; height:100%; border-radius:12px; border:0;" title="Map"></iframe>
+                </div>
+                <div style="flex:1;">
+                    <h4>The Holiday Home & Homestay</h4>
+                    <p><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> Kandari Medical Store, Anna's Mess Restaurant Down to, Rishikesh, Uttarakhand 249192</p>
+                    <p><i class="fas fa-clock" style="color:var(--gold);"></i> Check-in: 2 PM / Check-out: 11 AM</p>
+                    <p><i class="fas fa-rainbow" style="color:var(--gold);"></i> LGBTQ+ Friendly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-banner">
+        <div class="container" data-aos="zoom-in">
+            <h2>Book Your <span style="color:var(--gold);">Budget Stay</span> Today</h2>
+            <p style="font-size:1.3rem; margin:20px 0 30px;">Contact us for the best rates and a comfortable homestay experience in Rishikesh.</p>
+            <a href="#contact" class="btn-gold" style="font-size:1.2rem;"><i class="fas fa-phone-alt"></i> Contact Us</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div data-aos="fade-up"><h4>The Holiday Home & Homestay</h4><p>Clean rooms, free Wi-Fi, pool, parking. Near Laxman Jhula, Tapovan.</p><div class="social" style="margin-top:20px;"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook"></i></a></div></div>
+            <div data-aos="fade-up"><h4>Links</h4><a href="#about">About</a><a href="#rooms">Rooms</a><a href="#gallery">Gallery</a></div>
+            <div data-aos="fade-up"><h4>Contact</h4><a href="mailto:info@theholidayhome.com">Email Us</a></div>
+            <div data-aos="fade-up"><h4>Newsletter</h4><form onsubmit="alert('Subscribed!'); return false;"><input type="email" placeholder="Email" required/><button class="btn-gold" style="width:100%; margin-top:8px;">Subscribe</button></form></div>
+        </div>
+        <div class="container" style="text-align:center; margin-top:40px; border-top:1px solid rgba(255,255,255,0.2); padding-top:20px;"><p>&copy; 2026 The Holiday Home & Homestay. <a href="#" style="color:var(--gold);">Privacy Policy</a></p></div>
+    </footer>
+
+    <!-- WhatsApp (optional) -->
+    <!-- <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a> -->
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Intro overlay hide - timing for new animation (orb pulse + ring + name reveal + expand = ~4.7s)
+        window.addEventListener('load', function() {
+            const introOverlay = document.getElementById('intro-overlay');
+            setTimeout(() => {
+                introOverlay.classList.add('hide');
+                setTimeout(() => {
+                    introOverlay.style.display = 'none';
+                }, 800);
+            }, 4700);
+        });
+
+        // Progress bar & Navbar
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+            const scrollTop = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('progress-bar').style.width = (scrollTop / height) * 100 + '%';
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('active')));
+
+        // Mobile Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const animateCounters = () => {
+            counters.forEach(c => {
+                const target = +c.getAttribute('data-target');
+                const update = () => {
+                    const cur = +c.innerText.replace(/[^0-9]/g,'');
+                    if (cur < target) {
+                        c.innerText = Math.ceil(cur + target/100);
+                        setTimeout(update, 20);
+                    } else c.innerText = target;
+                };
+                update();
+            });
+        };
+        new IntersectionObserver(entries => { if(entries[0].isIntersecting) animateCounters(); }, {threshold:0.5}).observe(document.getElementById('about'));
+
+        // Canvas Particles
+        const canvas = document.getElementById('particle-canvas'), ctx = canvas.getContext('2d');
+        let particles = [];
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        class Particle {
+            constructor() {
+                this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height;
+                this.size = Math.random()*3+1; this.speedX = Math.random()*0.5-0.25; this.speedY = Math.random()*0.5-0.25;
+                this.color = 'rgba(201,169,110,0.7)';
+            }
+            update() { this.x+=this.speedX; this.y+=this.speedY; if(this.x>canvas.width)this.x=0; if(this.x<0)this.x=canvas.width; if(this.y>canvas.height)this.y=0; if(this.y<0)this.y=canvas.height; }
+            draw() { ctx.fillStyle=this.color; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
+        }
+        function initParticles() { particles=[]; for(let i=0;i<80;i++) particles.push(new Particle()); }
+        initParticles(); window.addEventListener('resize', initParticles);
+        (function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); })();
+
+        // 3D tilt effect on room cards
+        const roomCards = document.querySelectorAll('.room-card');
+        roomCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 15;
+                const rotateY = (centerX - x) / 15;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
